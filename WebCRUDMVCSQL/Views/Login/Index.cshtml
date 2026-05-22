@@ -1,0 +1,103 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+
+	<style>
+
+		body {
+			margin: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #1E1E2E;
+			font-family: Arial;
+		}
+
+		.login-box {
+			background: #2A2A40;
+			padding: 40px;
+			border-radius: 16px;
+			width: 320px;
+			box-shadow: 0 0 15px rgba(0,0,0,0.4);
+		}
+
+		h2 {
+			text-align: center;
+			color: white;
+			margin-bottom: 30px;
+		}
+
+		input {
+			width: 100%;
+			padding: 12px;
+			margin-bottom: 15px;
+			border: none;
+			border-radius: 8px;
+			outline: none;
+		}
+
+		button {
+			width: 100%;
+			padding: 12px;
+			border: none;
+			border-radius: 8px;
+			background: #25679E;
+			color: white;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background: #1b4d77;
+			}
+
+		.cadastro-link {
+			margin-top: 20px;
+			text-align: center;
+		}
+
+			.cadastro-link a {
+				color: white;
+				text-decoration: none;
+				font-size: 14px;
+			}
+
+				.cadastro-link a:hover {
+					text-decoration: underline;
+				}
+	</style>
+</head>
+<body>
+
+	<div class="login-box">
+
+		<h2>Login</h2>
+
+		<form action="/Login" method="post">
+
+			<input type="email" name="email" placeholder="Digite seu email">
+
+			<input type="password" name="senha" placeholder="Digite sua senha">
+
+			<button type="submit">Entrar</button>
+
+		</form>
+		<div class="cadastro-link">
+			<a href="/Login/Cadastro">
+				Criar Conta
+			</a>
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+
