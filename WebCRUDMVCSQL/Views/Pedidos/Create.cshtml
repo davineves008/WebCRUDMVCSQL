@@ -1,0 +1,78 @@
+﻿@model WebCRUDMVCSQL.Models.Pedido
+
+@{
+    ViewData["Title"] = "Novo Pedido";
+}
+
+<h1>Novo Pedido</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- CLIENTE -->
+            <div class="form-group mb-3">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <input asp-for="ClienteId" class="form-control" />
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+
+            <!-- USUARIO -->
+            <div class="form-group mb-3">
+                <label asp-for="UsuarioId" class="control-label"></label>
+                <input asp-for="UsuarioId" class="form-control" />
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+
+            <!-- PRODUTO -->
+            <div class="form-group mb-3">
+                <label asp-for="ProdutoId" class="control-label"></label>
+                <input asp-for="ProdutoId" class="form-control" />
+                <span asp-validation-for="ProdutoId" class="text-danger"></span>
+            </div>
+
+            <!-- QUANTIDADE -->
+            <div class="form-group mb-3">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" class="form-control" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+
+            <!-- VALOR TOTAL -->
+            <div class="form-group mb-3">
+                <label asp-for="ValorTotal" class="control-label"></label>
+                <input asp-for="ValorTotal" class="form-control" />
+                <span asp-validation-for="ValorTotal" class="text-danger"></span>
+            </div>
+
+            <!-- DATA PEDIDO -->
+            <div class="form-group mb-3">
+                <label asp-for="DataPedido" class="control-label"></label>
+                <input asp-for="DataPedido" type="date" class="form-control" />
+                <span asp-validation-for="DataPedido" class="text-danger"></span>
+            </div>
+
+            <!-- BOTAO -->
+            <div class="form-group">
+                <input type="submit" value="Cadastrar Pedido" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">
+        Voltar
+    </a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

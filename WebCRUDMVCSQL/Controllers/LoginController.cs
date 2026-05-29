@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebCRUDMVCSQL.Models;
 using WebCRUDMVCSQL.Repositorios;
 
-namespace Projeto.Controllers
+namespace WebCRUDMVCSQL.Controllers
 {
     public class LoginController : Controller
     {
-        // ABRIR A TELA
+        // ABRIR TELA
         [HttpGet]
         public IActionResult Index()
         {
@@ -16,20 +17,56 @@ namespace Projeto.Controllers
         [HttpPost]
         public IActionResult Index(string email, string senha)
         {
-            UsuarioRepositorio repo = new UsuarioRepositorio();
-
-            var usuario = repo.FazerLogin(email, senha);
-
-            if (usuario != null)
+            // CAMPOS VAZIOS
+            if (string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(senha))
             {
-                return RedirectToAction("Index", "Home");
+                ViewBag.Erro =
+                    "Email e senha são obrigatórios";
+
+                return View();
             }
 
-            ViewBag.Erro = "Email ou senha inválidos";
+            // VALIDAR EMAIL
+            if (!email.Contains("@") ||
+                !email.Contains("."))
+            {
+                ViewBag.Erro =
+                    "Digite um email válido";
 
-            return View();
+                return View();
+            }
+
+            // VALIDAR SENHA
+            if (senha.Length < 6)
+            {
+                ViewBag.Erro =
+                    "A senha deve ter no mínimo 6 caracteres";
+
+                return View();
+            }
+
+            UsuarioRepositorio repo =
+                new UsuarioRepositorio();
+
+            Usuarios usuario =
+                repo.FazerLogin(email, senha);
+
+            // LOGIN INVÁLIDO
+            if (usuario == null)
+            {
+                ViewBag.Erro =
+                    "Email ou senha inválidos";
+
+                return View();
+            }
+
+            // LOGIN OK
+            return RedirectToAction("Index", "Home");
         }
-        //Abrir tela de cadastro;
+
+
+        // ABRIR TELA CADASTRO
         [HttpGet]
         public IActionResult Cadastro()
         {

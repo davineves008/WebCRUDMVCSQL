@@ -1,0 +1,116 @@
+﻿@model IEnumerable<WebCRUDMVCSQL.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h1>Pedidos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Novo Pedido
+    </a>
+</p>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ProdutoId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotal)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DataPedido)
+            </th>
+
+            <th>
+                Ações
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClienteId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdutoId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPedido)
+                </td>
+
+                <td>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@item.Id"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.Id"
+                       class="btn btn-info btn-sm">
+                        Detalhes
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.Id"
+                       class="btn btn-danger btn-sm">
+                        Excluir
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

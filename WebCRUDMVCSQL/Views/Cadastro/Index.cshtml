@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+@model WebCRUDMVCSQL.Models.Usuarios
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -106,6 +108,15 @@
                 font-weight: bold;
             }
 
+        .erro {
+            grid-column: 1 / 3;
+            background: #ffebeb;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -118,20 +129,35 @@
               asp-action="Index"
               method="post">
 
+            @if (ViewBag.Erro != null)
+            {
+                <div class="erro">
+                    @ViewBag.Erro
+                </div>
+            }
+
             <div class="input-group">
                 <label>Nome</label>
-                <input type="text" name="Nome" placeholder="Digite seu nome">
+
+                <input asp-for="Nome"
+                       type="text"
+                       placeholder="Digite seu nome">
             </div>
 
             <div class="input-group">
                 <label>Idade</label>
-                <input type="number" name="Idade" placeholder="Digite sua idade">
+
+                <input asp-for="Idade"
+                       type="number"
+                       min="1"
+                       placeholder="Digite sua idade">
             </div>
 
             <div class="input-group">
                 <label>Sexo</label>
 
-                <select name="Sexo">
+                <select asp-for="Sexo">
+                    <option value="">Selecione</option>
                     <option>Masculino</option>
                     <option>Feminino</option>
                     <option>Outro</option>
@@ -141,7 +167,8 @@
             <div class="input-group">
                 <label>Estado Civil</label>
 
-                <select name="EstadoCivil">
+                <select asp-for="Estado_Civil">
+                    <option value="">Selecione</option>
                     <option>Solteiro(a)</option>
                     <option>Casado(a)</option>
                     <option>Divorciado(a)</option>
@@ -151,67 +178,106 @@
 
             <div class="input-group full">
                 <label>Endereço</label>
-                <input type="text" name="Endereco" placeholder="Digite seu endereço">
+
+                <input asp-for="Endereco"
+                       type="text"
+                       placeholder="Digite seu endereço">
             </div>
 
             <div class="input-group">
                 <label>CEP</label>
-                <input type="text" name="Cep" placeholder="00000-000">
+
+                <input asp-for="CEP"
+                       type="text"
+                       placeholder="00000-000">
             </div>
 
             <div class="input-group">
                 <label>Logradouro</label>
-                <input type="text" name="Logradouro" placeholder="Rua/Avenida">
+
+                <input asp-for="Logradouro"
+                       type="text"
+                       placeholder="Rua/Avenida">
             </div>
 
             <div class="input-group">
                 <label>Número</label>
-                <input type="text" name="NumeroCasa" placeholder="Número da casa">
+
+                <input asp-for="Numero_Casa"
+                       type="number"
+                       placeholder="Número da casa">
             </div>
 
             <div class="input-group">
                 <label>Complemento</label>
-                <input type="text" name="Complemento" placeholder="Apartamento, bloco...">
+
+                <input asp-for="Complemento"
+                       type="text"
+                       placeholder="Apartamento, bloco...">
             </div>
 
             <div class="input-group">
                 <label>Bairro</label>
-                <input type="text" name="Bairro" placeholder="Digite o bairro">
+
+                <input asp-for="Bairro"
+                       type="text"
+                       placeholder="Digite o bairro">
             </div>
 
             <div class="input-group">
                 <label>Cidade</label>
-                <input type="text" name="Cidade" placeholder="Digite a cidade">
+
+                <input asp-for="Cidade"
+                       type="text"
+                       placeholder="Digite a cidade">
             </div>
 
             <div class="input-group">
                 <label>Estado</label>
-                <input type="text" name="Estado" placeholder="Digite o estado">
+
+                <input asp-for="Estado"
+                       type="text"
+                       placeholder="Digite o estado">
             </div>
 
             <div class="input-group">
                 <label>País</label>
-                <input type="text" name="Pais" placeholder="Digite o país">
+
+                <input asp-for="Pais"
+                       type="text"
+                       placeholder="Digite o país">
             </div>
 
             <div class="input-group">
                 <label>WhatsApp</label>
-                <input type="text" name="Whatsapp" placeholder="(00) 00000-0000">
+
+                <input asp-for="Whatsapp"
+                       type="text"
+                       placeholder="(00) 00000-0000">
             </div>
 
             <div class="input-group">
                 <label>CPF</label>
-                <input type="text" name="Cpf" placeholder="000.000.000-00">
+
+                <input asp-for="CPF"
+                       type="text"
+                       placeholder="000.000.000-00">
             </div>
 
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" name="Email" placeholder="Digite seu email">
+
+                <input asp-for="Email"
+                       type="email"
+                       placeholder="Digite seu email">
             </div>
 
             <div class="input-group">
                 <label>Senha</label>
-                <input type="password" name="Senha" placeholder="Digite sua senha">
+
+                <input asp-for="Senha"
+                       type="password"
+                       placeholder="Digite sua senha">
             </div>
 
             <button type="submit" class="btn-cadastrar">

@@ -14,5 +14,7 @@ namespace WebCRUDMVCSQL.Models
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
 
+        public DbSet<Pedido> pedido { get; set; }
+
     }
 }
