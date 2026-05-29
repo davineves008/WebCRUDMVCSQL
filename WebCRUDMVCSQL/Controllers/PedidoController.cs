@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebCRUDMVCSQL.Models;
 
 namespace WebCRUDMVCSQL.Controllers
@@ -17,7 +18,12 @@ namespace WebCRUDMVCSQL.Controllers
         // LISTAR
         public async Task<IActionResult> Index()
         {
-            return View(await _context.pedido.ToListAsync());
+            var pedidos = _context.pedido
+                .Include(p => p.Cliente)
+                .Include(p => p.Usuario)
+                .Include(p => p.Produto);
+
+            return View(await pedidos.ToListAsync());
         }
 
         // DETALHES
@@ -29,6 +35,9 @@ namespace WebCRUDMVCSQL.Controllers
             }
 
             var pedido = await _context.pedido
+                .Include(p => p.Cliente)
+                .Include(p => p.Usuario)
+                .Include(p => p.Produto)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (pedido == null)
@@ -42,26 +51,53 @@ namespace WebCRUDMVCSQL.Controllers
         // ABRIR CREATE
         public IActionResult Create()
         {
+            CarregarListas();
+
             return View();
         }
-
         // SALVAR CREATE
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Pedido pedido)
         {
-            if (ModelState.IsValid)
+            // DEFINE DATA E HORA AUTOMÁTICA
+            pedido.DataPedido = DateTime.Now;
+
+            // VALIDAÇÕES
+            if (pedido.ClienteId <= 0)
             {
-                _context.Add(pedido);
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
+                ViewBag.Erro = "Selecione um cliente";
+            }
+            else if (pedido.UsuarioId <= 0)
+            {
+                ViewBag.Erro = "Selecione um usuário";
+            }
+            else if (pedido.ProdutoId <= 0)
+            {
+                ViewBag.Erro = "Selecione um produto";
+            }
+            else if (pedido.Quantidade <= 0)
+            {
+                ViewBag.Erro = "Quantidade inválida";
+            }
+            else if (pedido.ValorTotal <= 0)
+            {
+                ViewBag.Erro = "Valor total inválido";
             }
 
-            return View(pedido);
-        }
+            if (ViewBag.Erro != null)
+            {
+                CarregarListas();
 
+                return View(pedido);
+            }
+
+            _context.Add(pedido);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
         // ABRIR EDIT
         public async Task<IActionResult> Edit(int? id)
         {
@@ -77,6 +113,8 @@ namespace WebCRUDMVCSQL.Controllers
                 return NotFound();
             }
 
+            CarregarListas();
+
             return View(pedido);
         }
 
@@ -90,30 +128,56 @@ namespace WebCRUDMVCSQL.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // VALIDAÇÕES
+            if (pedido.ClienteId <= 0)
             {
-                try
-                {
-                    _context.Update(pedido);
-
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PedidoExists(pedido.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-
-                return RedirectToAction(nameof(Index));
+                ViewBag.Erro = "Selecione um cliente";
+            }
+            else if (pedido.UsuarioId <= 0)
+            {
+                ViewBag.Erro = "Selecione um usuário";
+            }
+            else if (pedido.ProdutoId <= 0)
+            {
+                ViewBag.Erro = "Selecione um produto";
+            }
+            else if (pedido.Quantidade <= 0)
+            {
+                ViewBag.Erro = "Quantidade inválida";
+            }
+            else if (pedido.ValorTotal <= 0)
+            {
+                ViewBag.Erro = "Valor total inválido";
+            }
+            else if (pedido.DataPedido.Date > DateTime.Now.Date)
+            {
+                ViewBag.Erro = "Data inválida";
             }
 
-            return View(pedido);
+            if (ViewBag.Erro != null)
+            {
+                CarregarListas();
+
+                return View(pedido);
+            }
+
+            try
+            {
+                _context.Update(pedido);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PedidoExists(pedido.Id))
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         // ABRIR DELETE
@@ -125,6 +189,9 @@ namespace WebCRUDMVCSQL.Controllers
             }
 
             var pedido = await _context.pedido
+                .Include(p => p.Cliente)
+                .Include(p => p.Usuario)
+                .Include(p => p.Produto)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (pedido == null)
@@ -150,6 +217,28 @@ namespace WebCRUDMVCSQL.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        // CARREGAR LISTAS
+        private void CarregarListas()
+        {
+            ViewBag.Clientes = new SelectList(
+                _context.Clientes.ToList(),
+                "Id",
+                "Nome"
+            );
+
+            ViewBag.Usuarios = new SelectList(
+                _context.Usuarios.ToList(),
+                "Id",
+                "Nome"
+            );
+
+            ViewBag.Produtos = new SelectList(
+                _context.Produto.ToList(),
+                "Id",
+                "Nome"
+            );
         }
 
         // VERIFICAR EXISTENCIA
