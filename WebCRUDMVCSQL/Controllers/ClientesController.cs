@@ -50,7 +50,7 @@ namespace WebCRUDMVCSQL.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,idade,sexo, Estado_Civil,Endereco, CEP,Logradouro, Numero_Casa, Complemento,bairro, Cidade,Estado,Pais,Whatsapp, CPF,Email ")] Clientes cliente)
+        public async Task<IActionResult> Create([Bind("Id,Nome,idade,sexo, EstadoCivil,Endereco, CEP,Logradouro, NumeroCasa, Complemento,bairro, Cidade,Estado,Pais,Whatsapp, CPF,Email ")] Clientes cliente)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace WebCRUDMVCSQL.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Produto.FindAsync(id);
+            var cliente = await _context.Clientes.FindAsync(id);
             if (cliente == null)
             {
                 return NotFound();
@@ -82,7 +82,7 @@ namespace WebCRUDMVCSQL.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,idade,sexo, Estado_Civil,Endereco, CEP,Logradouro, Numero_Casa, Complemento,bairro, Cidade,Estado,Pais,Whatsapp, CPF,Email ")] Clientes cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,idade,sexo, Estado Civil,Endereco, CEP,Logradouro, NumeroCasa, Complemento,bairro, Cidade,Estado,Pais,Whatsapp, CPF,Email ")] Clientes cliente)
         {
             if (id != cliente.Id)
             {

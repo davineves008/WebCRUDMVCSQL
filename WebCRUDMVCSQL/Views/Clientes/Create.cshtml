@@ -70,11 +70,11 @@
 
             <!-- ESTADO CIVIL -->
             <div class="form-group mb-3">
-                <label asp-for="Estado_Civil"
+                <label asp-for="EstadoCivil"
                        class="control-label">
                 </label>
 
-                <select asp-for="Estado_Civil"
+                <select asp-for="EstadoCivil"
                         class="form-control">
 
                     <option value="">Selecione</option>
@@ -84,7 +84,7 @@
                     <option>Viúvo(a)</option>
                 </select>
 
-                <span asp-validation-for="Estado_Civil"
+                <span asp-validation-for="EstadoCivil"
                       class="text-danger">
                 </span>
             </div>
@@ -132,17 +132,17 @@
 
             <!-- NUMERO CASA -->
             <div class="form-group mb-3">
-                <label asp-for="Numero_Casa"
+                <label asp-for="NumeroCasa"
                        class="control-label">
                 </label>
 
-                <input asp-for="Numero_Casa"
+                <input asp-for="NumeroCasa"
                        type="number"
                        min="1"
                        class="form-control"
                        placeholder="Número da casa" />
 
-                <span asp-validation-for="Numero_Casa"
+                <span asp-validation-for="NumeroCasa"
                       class="text-danger">
                 </span>
             </div>

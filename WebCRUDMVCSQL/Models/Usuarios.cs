@@ -58,17 +58,17 @@ namespace WebCRUDMVCSQL.Models
         public string Pais { get; set; }
 
         [Required]
-        [Column("Estado_Civil")]
+        [Column("EstadoCivil")]
         [Display(Name = "Estado Civil")]
-        public string Estado_Civil { get; set; }
+        public string EstadoCivil { get; set; }
 
         [Column("Logradouro")]
         [Display(Name = "Logradouro")]
         public string Logradouro { get; set; }
 
-        [Column("Numero_Casa")]
-        [Display(Name = "Numero Casa")]
-        public int Numero_Casa { get; set; }
+        [Column("NumeroCasa")]
+        [Display(Name = "NumeroCasa")]
+        public int NumeroCasa { get; set; }
 
         [Column("Complemento")]
         [Display(Name = "Complemento")]

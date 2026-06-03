@@ -17,11 +17,11 @@ namespace WebCRUDMVCSQL.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Idade = table.Column<int>(type: "int", nullable: false),
                     Sexo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstadoCivil = table.Column<string>(name: "Estado Civil", type: "nvarchar(max)", nullable: false),
+                    EstadoCivil = table.Column<string>(name: "EstadoCivil", type: "nvarchar(max)", nullable: false),
                     Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CEP = table.Column<int>(type: "int", nullable: false),
                     Logradouro = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumeroCasa = table.Column<int>(name: "Numero Casa", type: "int", nullable: false),
+                    NumeroCasa = table.Column<int>(name: "NumeroCasa", type: "int", nullable: false),
                     Complemento = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Bairro = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -29,7 +29,7 @@ namespace WebCRUDMVCSQL.Migrations
                     Pais = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Whatsapp = table.Column<int>(type: "int", nullable: false),
                     CPF = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(name: "E-mail", type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(name: "Email", type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

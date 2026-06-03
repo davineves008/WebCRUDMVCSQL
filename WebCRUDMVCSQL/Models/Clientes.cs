@@ -26,9 +26,9 @@ namespace WebCRUDMVCSQL.Models
         [Display(Name = "Sexo")]
         public string? Sexo { get; set; }
 
-        [Column("Estado_Civil")]
+        [Column("EstadoCivil")]
         [Display(Name = "Estado Civil")]
-        public string? Estado_Civil { get; set; }
+        public string? EstadoCivil { get; set; }
 
 
         [Column("Endereco")]
@@ -43,9 +43,9 @@ namespace WebCRUDMVCSQL.Models
         [Display(Name = "Logradouro")]
         public string? Logradouro { get; set; }
 
-        [Column("Numero_Casa")] 
+        [Column("NumeroCasa")] 
         [Display(Name = "Numero Casa")]
-        public int  Numero_Casa { get; set; }
+        public int  NumeroCasa { get; set; }
 
         [Column("Complemento")]
         [Display(Name = "Complemento")]

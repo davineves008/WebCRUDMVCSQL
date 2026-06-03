@@ -112,7 +112,7 @@ namespace WebCRUDMVCSQL.Controllers
             }
 
             // ESTADO CIVIL
-            if (string.IsNullOrWhiteSpace(usuario.Estado_Civil))
+            if (string.IsNullOrWhiteSpace(usuario.EstadoCivil))
             {
                 ViewBag.Erro =
                     "Informe o estado civil";

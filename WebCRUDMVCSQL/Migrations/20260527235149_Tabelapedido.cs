@@ -121,7 +121,7 @@ namespace WebCRUDMVCSQL.Migrations
                 oldType: "nvarchar(max)");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Estado_Civil",
+                name: "Estado Civil",
                 table: "Clientes",
                 type: "nvarchar(max)",
                 nullable: true,
@@ -231,14 +231,14 @@ namespace WebCRUDMVCSQL.Migrations
                 newName: "Numero Casa");
 
             migrationBuilder.RenameColumn(
-                name: "Estado_Civil",
+                name: "Estado Civil",
                 table: "Clientes",
                 newName: "Estado Civil");
 
             migrationBuilder.RenameColumn(
                 name: "Email",
                 table: "Clientes",
-                newName: "E-mail");
+                newName: "Email");
 
             migrationBuilder.AlterColumn<int>(
                 name: "Whatsapp",
@@ -371,7 +371,7 @@ namespace WebCRUDMVCSQL.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "E-mail",
+                name: "Email",
                 table: "Clientes",
                 type: "nvarchar(max)",
                 nullable: false,

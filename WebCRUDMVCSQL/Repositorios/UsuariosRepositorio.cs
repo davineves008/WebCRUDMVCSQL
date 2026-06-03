@@ -7,9 +7,7 @@ namespace WebCRUDMVCSQL.Repositorios
     public class UsuarioRepositorio
     {
         public string conexao =
-            "Data Source=TQR216785\\SQLEXPRESS;Initial Catalog=CRUD_MVC_SQL_CANAL_DEV;Integrated Security=False;User ID=tds;Password=tds123;TrustServerCertificate=True";
-
-        // CADASTRAR
+     "Data Source=TQR224240;Initial Catalog=CRUD_MVC_SQL_CANAL_DEV;User ID=tds;Password=tds123;TrustServerCertificate=True;";
         public void Cadastrar(Usuarios usuario)
         {
             using (SqlConnection conn =
@@ -18,19 +16,19 @@ namespace WebCRUDMVCSQL.Repositorios
                 conn.Open();
 
                 string query =
-            @"INSERT INTO Clientes
+            @"INSERT INTO Usuarios
 (
     Nome, Idade, Sexo, Email, Senha,
     CPF, Whatsapp, Endereco, Logradouro,
-    Numero_Casa, Complemento, Bairro,
-    Cidade, Estado, Pais, Estado_Civil, CEP
+    NumeroCasa, Complemento, Bairro,
+    Cidade, Estado, Pais, EstadoCivil, CEP
 )
 VALUES
 (
     @Nome, @Idade, @Sexo, @Email, @Senha,
     @CPF, @Whatsapp, @Endereco, @Logradouro,
-    @Numero_Casa, @Complemento, @Bairro,
-    @Cidade, @Estado, @Pais, @Estado_Civil, @CEP
+    @NumeroCasa, @Complemento, @Bairro,
+    @Cidade, @Estado, @Pais, @EstadoCivil, @CEP
 )";
 
                 SqlCommand cmd =
@@ -44,13 +42,13 @@ VALUES
                 cmd.Parameters.AddWithValue("@Whatsapp", usuario.Whatsapp);
                 cmd.Parameters.AddWithValue("@Endereco", usuario.Endereco ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Logradouro", usuario.Logradouro ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Numero_Casa", usuario.Numero_Casa);
+                cmd.Parameters.AddWithValue("@NumeroCasa", usuario.NumeroCasa);
                 cmd.Parameters.AddWithValue("@Complemento", usuario.Complemento ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Bairro", usuario.Bairro ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Cidade", usuario.Cidade ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Estado", usuario.Estado ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Pais", usuario.Pais ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Estado_Civil", usuario.Estado_Civil ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@EstadoCivil", usuario.EstadoCivil ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@CEP", usuario.CEP ?? (object)DBNull.Value);
                 cmd.ExecuteNonQuery();
             }
@@ -64,7 +62,7 @@ VALUES
                 conn.Open();
 
                 string query =
-                    @"SELECT * FROM Clientes
+                    @"SELECT * FROM usuarios
                       WHERE Email = @Email
                       AND Senha = @Senha";
 
@@ -126,7 +124,7 @@ VALUES
             if (string.IsNullOrWhiteSpace(usuario.Sexo))
                 return true;
 
-            if (string.IsNullOrWhiteSpace(usuario.Estado_Civil))
+            if (string.IsNullOrWhiteSpace(usuario.EstadoCivil))
                 return true;
 
             if (string.IsNullOrWhiteSpace(usuario.Endereco))
@@ -138,7 +136,7 @@ VALUES
             if (string.IsNullOrWhiteSpace(usuario.Logradouro))
                 return true;
 
-            if (usuario.Numero_Casa <= 0)
+            if (usuario.NumeroCasa <= 0)
                 return true;
 
             if (string.IsNullOrWhiteSpace(usuario.Bairro))
