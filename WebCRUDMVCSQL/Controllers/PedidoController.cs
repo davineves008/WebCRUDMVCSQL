@@ -121,12 +121,26 @@ namespace WebCRUDMVCSQL.Controllers
         // SALVAR EDIT
         [HttpPost]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> Edit(int id, Pedido pedido)
         {
             if (id != pedido.Id)
             {
                 return NotFound();
             }
+            pedido.DataPedido = DateTime.Now;
+
+            var pedidoBanco = await _context.pedido
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pedidoBanco == null)
+            {
+                return NotFound();
+            }
+
+            // Mantém a data original
+            pedido.DataPedido = pedidoBanco.DataPedido;
 
             // VALIDAÇÕES
             if (pedido.ClienteId <= 0)

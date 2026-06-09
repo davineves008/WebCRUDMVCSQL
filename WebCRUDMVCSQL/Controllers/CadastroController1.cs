@@ -44,7 +44,7 @@ namespace WebCRUDMVCSQL.Controllers
             }
 
             // IDADE
-            if (usuario.Idade < 1 || usuario.Idade > 120)
+            if (usuario.Idade < 18 || usuario.Idade > 120)
             {
                 ViewBag.Erro =
                     "Informe uma idade válida";

@@ -96,7 +96,7 @@ VALUES
                 conn.Open();
 
                 string query =
-                    "SELECT COUNT(*) FROM Clientes WHERE Email = @Email";
+                    "SELECT COUNT(*) FROM Usuarios WHERE Email = @Email";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -164,6 +164,25 @@ VALUES
                 return true;
 
             return false;
+        }
+        //Cpf duplicado.
+        public bool CPFExiste(string cpf)
+        {
+            using (SqlConnection conn = new SqlConnection(conexao))
+            {
+                conn.Open();
+
+                string query =
+                    "SELECT COUNT(*) FROM Usuarios WHERE CPF = @CPF";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@CPF", cpf);
+
+                int quantidade = (int)cmd.ExecuteScalar();
+
+                return quantidade > 0;
+            }
         }
     }
 }

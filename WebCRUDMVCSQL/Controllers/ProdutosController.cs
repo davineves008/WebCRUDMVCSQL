@@ -56,15 +56,23 @@ namespace WebCRUDMVCSQL.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Peso,Preco")] Produto produto)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(produto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(produto);
-        }
+            if (string.IsNullOrWhiteSpace(produto.Nome))
+                ModelState.AddModelError("Nome", "Informe o nome do produto");
 
+            if (produto.Peso <= 0)
+                ModelState.AddModelError("Peso", "O peso deve ser maior que zero");
+
+            if (produto.Preco <= 0)
+                ModelState.AddModelError("Preco", "O preço deve ser maior que zero");
+
+            if (!ModelState.IsValid)
+                return View(produto);
+
+            _context.Add(produto);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
         // GET: Produtos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -89,33 +97,40 @@ namespace WebCRUDMVCSQL.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Peso,Preco")] Produto produto)
         {
             if (id != produto.Id)
-            {
                 return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            if (string.IsNullOrWhiteSpace(produto.Nome))
+                ModelState.AddModelError("Nome", "Informe o nome do produto");
+
+            if (produto.Nome.Length < 3)
+                ModelState.AddModelError("Nome", "O nome deve ter no mínimo 3 caracteres");
+
+            if (produto.Peso <= 0)
+                ModelState.AddModelError("Peso", "O peso deve ser maior que zero");
+
+            if (produto.Preco <= 0)
+                ModelState.AddModelError("Preco", "O preço deve ser maior que zero");
+
+            if (!ModelState.IsValid)
+                return View(produto);
+
+            try
             {
-                try
-                {
-                    _context.Update(produto);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProdutoExists(produto.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+               
+                
+                _context.Update(produto);
+                await _context.SaveChangesAsync();
             }
-            return View(produto);
-        }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProdutoExists(produto.Id))
+                    return NotFound();
 
+                throw;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
         // GET: Produtos/Delete/5
         public async Task<IActionResult> delete(int? id)
         {

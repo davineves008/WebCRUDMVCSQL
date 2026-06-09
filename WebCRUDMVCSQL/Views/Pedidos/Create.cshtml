@@ -89,15 +89,12 @@
                                class="form-control rounded-3" />
                     </div>
 
-                    <!-- DATA -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-bold">
-                            Data do Pedido
-                        </label>
-
-                        <input asp-for="DataPedido"
-                               type="datetime-local"
-                               class="form-control rounded-3" />
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Data do Pedido</label>
+                        <input type="text"
+                               class="form-control"
+                               value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")"
+                               readonly />
                     </div>
 
                 </div>
