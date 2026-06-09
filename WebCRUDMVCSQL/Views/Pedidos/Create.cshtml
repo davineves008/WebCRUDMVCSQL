@@ -4,97 +4,124 @@
     ViewData["Title"] = "Novo Pedido";
 }
 
-<h1>Novo Pedido</h1>
+<div class="container mt-5">
 
-<hr />
+    <div class="card shadow-lg border-0 rounded-4">
 
-<div class="row">
-    <div class="col-md-6">
+        <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+            <h2 class="mb-0">🛒 Novo Pedido</h2>
+        </div>
 
-        @if (ViewBag.Erro != null)
-        {
-            <div class="alert alert-danger">
-                @ViewBag.Erro
-            </div>
-        }
+        <div class="card-body p-4">
 
-        <form asp-action="Create">
+            @if (ViewBag.Erro != null)
+            {
+                <div class="alert alert-danger rounded-3">
+                    @ViewBag.Erro
+                </div>
+            }
 
-            <!-- CLIENTE -->
-            <div class="form-group mb-3">
-                <label class="control-label">Cliente</label>
+            <form asp-action="Create">
 
-                <select asp-for="ClienteId"
-                        class="form-control"
-                        asp-items="ViewBag.Clientes">
-                    <option value="">Selecione um cliente</option>
-                </select>
-            </div>
+                <div class="row">
 
-            <!-- USUÁRIO -->
-            <div class="form-group mb-3">
-                <label class="control-label">Usuário</label>
+                    <!-- CLIENTE -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">
+                            Cliente
+                        </label>
 
-                <select asp-for="UsuarioId"
-                        class="form-control"
-                        asp-items="ViewBag.Usuarios">
-                    <option value="">Selecione um usuário</option>
-                </select>
-            </div>
+                        <select asp-for="ClienteId"
+                                class="form-select rounded-3"
+                                asp-items="ViewBag.Clientes">
+                            <option value="">Selecione um cliente</option>
+                        </select>
+                    </div>
 
-            <!-- PRODUTO -->
-            <div class="form-group mb-3">
-                <label class="control-label">Produto</label>
+                    <!-- USUARIO -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">
+                            Usuário
+                        </label>
 
-                <select asp-for="ProdutoId"
-                        class="form-control"
-                        asp-items="ViewBag.Produtos">
-                    <option value="">Selecione um produto</option>
-                </select>
-            </div>
+                        <select asp-for="UsuarioId"
+                                class="form-select rounded-3"
+                                asp-items="ViewBag.Usuarios">
+                            <option value="">Selecione um usuário</option>
+                        </select>
+                    </div>
 
-            <!-- QUANTIDADE -->
-            <div class="form-group mb-3">
-                <label class="control-label">Quantidade</label>
+                    <!-- PRODUTO -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">
+                            Produto
+                        </label>
 
-                <input asp-for="Quantidade"
-                       type="number"
-                       min="1"
-                       class="form-control" />
-            </div>
+                        <select asp-for="ProdutoId"
+                                class="form-select rounded-3"
+                                asp-items="ViewBag.Produtos">
+                            <option value="">Selecione um produto</option>
+                        </select>
+                    </div>
 
-            <!-- VALOR -->
-            <div class="form-group mb-3">
-                <label class="control-label">Valor Total</label>
+                    <!-- QUANTIDADE -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">
+                            Quantidade
+                        </label>
 
-                <input asp-for="ValorTotal"
-                       type="number"
-                       min="0.01"
-                       step="0.01"
-                       class="form-control" />
-            </div>
+                        <input asp-for="Quantidade"
+                               type="number"
+                               min="1"
+                               class="form-control rounded-3" />
+                    </div>
 
-            
-            <!-- DATA -->
-            <div class="form-group mb-3">
-                <label class="control-label">Data do Pedido</label>
+                    <!-- VALOR -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">
+                            Valor Total
+                        </label>
 
-                <input asp-for="DataPedido"
-                       type="datetime-local"
-                       class="form-control" />
-            </div>
+                        <input asp-for="ValorTotal"
+                               type="number"
+                               min="0.01"
+                               step="0.01"
+                               class="form-control rounded-3" />
+                    </div>
 
-            <div class="form-group">
-                <input type="submit"
-                       value="Cadastrar Pedido"
-                       class="btn btn-primary" />
+                    <!-- DATA -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">
+                            Data do Pedido
+                        </label>
 
-                <a asp-action="Index"
-                   class="btn btn-secondary">
-                    Voltar
-                </a>
-            </div>
+                        <input asp-for="DataPedido"
+                               type="datetime-local"
+                               class="form-control rounded-3" />
+                    </div>
 
-        </form>
+                </div>
+
+                <hr />
+
+                <div class="d-flex gap-2 justify-content-end">
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary rounded-pill px-4">
+                        Voltar
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-success rounded-pill px-4">
+                        Salvar Pedido
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
+
 </div>

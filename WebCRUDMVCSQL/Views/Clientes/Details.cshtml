@@ -1,115 +1,122 @@
 ﻿@model WebCRUDMVCSQL.Models.Clientes
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Cliente";
 }
 
-<h1>Details</h1>
+<div class="container mt-4">
 
-<div>
-    <h4>clientes</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+    <div class="card shadow border-0 rounded-4">
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Idade)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Idade)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Sexo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Sexo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EstadoCivil)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EstadoCivil)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Endereco)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CEP)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CEP)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Logradouro)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Logradouro)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NumeroCasa)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumeroCasa)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Complemento)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Complemento)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Bairro)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bairro)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pais)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pais)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Whatsapp)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Whatsapp)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CPF)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CPF)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <div class="card-header bg-primary text-white rounded-top-4">
+            <h2 class="mb-0">👤 Detalhes do Cliente</h2>
+        </div>
+
+        <div class="card-body p-4">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+                    <strong>Nome:</strong>
+                    <p>@Model.Nome</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Idade:</strong>
+                    <p>@Model.Idade</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Sexo:</strong>
+                    <p>@Model.Sexo</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Estado Civil:</strong>
+                    <p>@Model.EstadoCivil</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Endereço:</strong>
+                    <p>@Model.Endereco</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>CEP:</strong>
+                    <p>@Model.CEP</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Logradouro:</strong>
+                    <p>@Model.Logradouro</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Número:</strong>
+                    <p>@Model.NumeroCasa</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Complemento:</strong>
+                    <p>@Model.Complemento</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Bairro:</strong>
+                    <p>@Model.Bairro</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Cidade:</strong>
+                    <p>@Model.Cidade</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Estado:</strong>
+                    <p>@Model.Estado</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>País:</strong>
+                    <p>@Model.Pais</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>WhatsApp:</strong>
+                    <p>@Model.Whatsapp</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>CPF:</strong>
+                    <p>@Model.CPF</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <strong>Email:</strong>
+                    <p>@Model.Email</p>
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="d-flex gap-2">
+
+                <a asp-action="Edit"
+                   asp-route-id="@Model?.Id"
+                   class="btn btn-warning rounded-pill px-4">
+                    ✏️ Editar
+                </a>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary rounded-pill px-4">
+                    ← Voltar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>

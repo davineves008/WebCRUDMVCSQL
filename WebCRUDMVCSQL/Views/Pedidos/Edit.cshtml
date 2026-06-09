@@ -4,79 +4,143 @@
     ViewData["Title"] = "Editar Pedido";
 }
 
-<h1>Editar Pedido</h1>
+<div class="container mt-5">
 
-<h4>Pedido</h4>
+    <div class="card shadow border-0 rounded-4">
 
-<hr />
+        <div class="card-header bg-warning text-dark text-center rounded-top-4">
+            <h2 class="mb-0">✏️ Editar Pedido</h2>
+        </div>
 
-<div class="row">
-    <div class="col-md-6">
+        <div class="card-body p-4">
 
-        <form asp-action="Edit">
+            @if (ViewBag.Erro != null)
+            {
+                <div class="alert alert-danger rounded-3">
+                    @ViewBag.Erro
+                </div>
+            }
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form asp-action="Edit">
 
-            <!-- ID -->
-            <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Id" />
 
-            <!-- CLIENTE -->
-            <div class="form-group mb-3">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <input asp-for="ClienteId" class="form-control" />
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
-            </div>
+                <!-- CLIENTE -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        Cliente
+                    </label>
 
-            <!-- USUARIO -->
-            <div class="form-group mb-3">
-                <label asp-for="UsuarioId" class="control-label"></label>
-                <input asp-for="UsuarioId" class="form-control" />
-                <span asp-validation-for="UsuarioId" class="text-danger"></span>
-            </div>
+                    <select asp-for="ClienteId"
+                            class="form-select rounded-pill"
+                            asp-items="ViewBag.Clientes">
+                    </select>
 
-            <!-- PRODUTO -->
-            <div class="form-group mb-3">
-                <label asp-for="ProdutoId" class="control-label"></label>
-                <input asp-for="ProdutoId" class="form-control" />
-                <span asp-validation-for="ProdutoId" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="ClienteId"
+                          class="text-danger">
+                    </span>
+                </div>
 
-            <!-- QUANTIDADE -->
-            <div class="form-group mb-3">
-                <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" class="form-control" />
-                <span asp-validation-for="Quantidade" class="text-danger"></span>
-            </div>
+                <!-- USUÁRIO -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        Usuário
+                    </label>
 
-            <!-- VALOR TOTAL -->
-            <div class="form-group mb-3">
-                <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" class="form-control" />
-                <span asp-validation-for="ValorTotal" class="text-danger"></span>
-            </div>
+                    <select asp-for="UsuarioId"
+                            class="form-select rounded-pill"
+                            asp-items="ViewBag.Usuarios">
+                    </select>
 
-            <!-- DATA PEDIDO -->
-            <div class="form-group mb-3">
-                <label asp-for="DataPedido" class="control-label"></label>
-                <input asp-for="DataPedido" type="date" class="form-control" />
-                <span asp-validation-for="DataPedido" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="UsuarioId"
+                          class="text-danger">
+                    </span>
+                </div>
 
-            <!-- BOTAO -->
-            <div class="form-group">
-                <input type="submit"
-                       value="Salvar"
-                       class="btn btn-primary" />
+                <!-- PRODUTO -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        Produto
+                    </label>
 
-                <a asp-action="Index"
-                   class="btn btn-secondary">
-                    Voltar
-                </a>
-            </div>
+                    <select asp-for="ProdutoId"
+                            class="form-select rounded-pill"
+                            asp-items="ViewBag.Produtos">
+                    </select>
 
-        </form>
+                    <span asp-validation-for="ProdutoId"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <!-- QUANTIDADE -->
+                <div class="mb-3">
+                    <label asp-for="Quantidade"
+                           class="form-label fw-bold">
+                    </label>
+
+                    <input asp-for="Quantidade"
+                           type="number"
+                           min="1"
+                           class="form-control form-control-lg rounded-pill" />
+
+                    <span asp-validation-for="Quantidade"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <!-- VALOR TOTAL -->
+                <div class="mb-3">
+                    <label asp-for="ValorTotal"
+                           class="form-label fw-bold">
+                    </label>
+
+                    <input asp-for="ValorTotal"
+                           type="number"
+                           step="0.01"
+                           min="0.01"
+                           class="form-control form-control-lg rounded-pill" />
+
+                    <span asp-validation-for="ValorTotal"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <!-- DATA -->
+                <div class="mb-4">
+                    <label asp-for="DataPedido"
+                           class="form-label fw-bold">
+                    </label>
+
+                    <input asp-for="DataPedido"
+                           type="date"
+                           class="form-control form-control-lg rounded-pill" />
+
+                    <span asp-validation-for="DataPedido"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn btn-warning rounded-pill px-4">
+                        💾 Salvar
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary rounded-pill px-4">
+                        ↩ Voltar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
 
     </div>
+
 </div>
 
 @section Scripts {

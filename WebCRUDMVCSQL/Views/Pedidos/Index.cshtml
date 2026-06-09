@@ -3,16 +3,16 @@
 @{
     ViewData["Title"] = "Pedidos";
 }
-
-<h1>Pedidos</h1>
-
+<h2 class="mb-4">📋 Gerenciamento de Pedidos</h2>
 <p>
-    <a asp-action="Create" class="btn btn-primary">
-        Novo Pedido
+
+    <a asp-action="Create"
+       class="btn btn-primary rounded-pill px-4 shadow-sm">
+        ➕ Novo Pedido
     </a>
 </p>
 
-<table class="table table-bordered table-hover">
+<table class="table table-hover table-striped align-middle shadow-sm">
 
     <thead class="table-dark">
         <tr>
@@ -85,29 +85,29 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DataPedido)
                 </td>
-
                 <td>
+                    <div class="d-flex gap-2 flex-wrap">
 
-                    <a asp-action="Edit"
-                       asp-route-id="@item.Id"
-                       class="btn btn-warning btn-sm">
-                        Editar
-                    </a>
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-warning btn-sm rounded-pill px-3 shadow-sm">
+                            ✏ Editar
+                        </a>
 
-                    <a asp-action="Details"
-                       asp-route-id="@item.Id"
-                       class="btn btn-info btn-sm">
-                        Detalhes
-                    </a>
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id"
+                           class="btn btn-info btn-sm rounded-pill px-3 shadow-sm">
+                            👁 Detalhes
+                        </a>
 
-                    <a asp-action="Delete"
-                       asp-route-id="@item.Id"
-                       class="btn btn-danger btn-sm">
-                        Excluir
-                    </a>
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm">
+                            🗑 Excluir
+                        </a>
 
+                    </div>
                 </td>
-
             </tr>
         }
 

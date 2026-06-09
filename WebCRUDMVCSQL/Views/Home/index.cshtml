@@ -1,8 +1,106 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Sistema de Vendas";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .dashboard {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 80px;
+        flex-wrap: wrap;
+    }
+
+    .card-menu {
+        width: 280px;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+        .card-menu:hover {
+            transform: translateY(-8px);
+            color: white;
+        }
+
+    .clientes {
+        background: #25679E;
+    }
+
+    .produtos {
+        background: #28A745;
+    }
+
+    .pedidos {
+        background: #DC3545;
+    }
+
+    .titulo {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+        .titulo h1 {
+            font-size: 40px;
+            color: #333;
+        }
+
+        .titulo p {
+            color: #666;
+            font-size: 18px;
+        }
+
+    .icone {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="titulo">
+    <h1>Sistema de Gestão</h1>
+    <p>Selecione uma opção para continuar</p>
+</div>
+
+<div class="dashboard">
+
+    <a asp-controller="Clientes"
+       asp-action="Index"
+       class="card-menu clientes">
+
+        <div class="icone">👥</div>
+
+        <h3>Clientes</h3>
+
+        <p>Cadastro, edição e consulta de clientes.</p>
+
+    </a>
+
+    <a asp-controller="Produtos"
+       asp-action="Index"
+       class="card-menu produtos">
+
+        <div class="icone">📦</div>
+
+        <h3>Produtos</h3>
+
+        <p>Gerenciamento completo dos produtos.</p>
+
+    </a>
+
+    <a asp-controller="Pedidos"
+       asp-action="Index"
+       class="card-menu pedidos">
+
+        <div class="icone">🛒</div>
+
+        <h3>Pedidos</h3>
+
+        <p>Controle e acompanhamento dos pedidos.</p>
+
+    </a>
+
 </div>
