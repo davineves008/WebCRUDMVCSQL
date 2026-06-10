@@ -13,7 +13,6 @@ namespace WebCRUDMVCSQL.Controllers
             return View();
         }
 
-        // FAZER LOGIN
         [HttpPost]
         public IActionResult Index(string email, string senha)
         {
@@ -21,50 +20,50 @@ namespace WebCRUDMVCSQL.Controllers
             if (string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(senha))
             {
-                ViewBag.Erro =
-                    "Email e senha são obrigatórios";
-
+                ViewBag.Erro = "Email e senha são obrigatórios";
                 return View();
             }
 
-            // VALIDAR EMAIL
-            if (!email.Contains("@") ||
-                !email.Contains("."))
+            email = email.Trim();
+
+            // TAMANHO DO EMAIL
+            if (email.Length > 100)
             {
-                ViewBag.Erro =
-                    "Digite um email válido";
-
+                ViewBag.Erro = "Email muito grande";
                 return View();
             }
 
-            // VALIDAR SENHA
+            // FORMATO DO EMAIL
+            if (!new System.ComponentModel.DataAnnotations.EmailAddressAttribute()
+                .IsValid(email))
+            {
+                ViewBag.Erro = "Digite um email válido";
+                return View();
+            }
+
+            // TAMANHO DA SENHA
             if (senha.Length < 6)
             {
-                ViewBag.Erro =
-                    "A senha deve ter no mínimo 6 caracteres";
-
+                ViewBag.Erro = "A senha deve ter no mínimo 6 caracteres";
                 return View();
             }
 
-            UsuarioRepositorio repo =
-                new UsuarioRepositorio();
+            UsuarioRepositorio repo = new UsuarioRepositorio();
 
-            Usuarios usuario =
-                repo.FazerLogin(email, senha);
+            Usuarios usuario = repo.FazerLogin(email, senha);
 
-            // LOGIN INVÁLIDO
             if (usuario == null)
             {
-                ViewBag.Erro =
-                    "Email ou senha inválidos";
-
+                ViewBag.Erro = "Email ou senha inválidos";
                 return View();
             }
 
-            // LOGIN OK
+            // Salva dados do usuário na sessão
+            HttpContext.Session.SetString("UsuarioNome", usuario.Nome);
+            HttpContext.Session.SetInt32("UsuarioId", usuario.Id);
+
             return RedirectToAction("Index", "Home");
         }
-
 
         // ABRIR TELA CADASTRO
         [HttpGet]

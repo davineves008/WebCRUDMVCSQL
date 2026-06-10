@@ -149,17 +149,32 @@ namespace WebCRUDMVCSQL.Controllers
             return View(produto);
         }
 
-        // POST: Produtos/Delete/5
+        /// POST: Produtos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            bool possuiPedidos = await _context.pedido
+                .AnyAsync(p => p.ProdutoId == id);
+
+            if (possuiPedidos)
+            {
+                TempData["Erro"] =
+                    "Não é possível excluir este produto, pois ele está vinculado a pedidos.";
+
+                return RedirectToAction(nameof(Index));
+            }
+
             var produto = await _context.Produto.FindAsync(id);
-            _context.Produto.Remove(produto);
-            await _context.SaveChangesAsync();
+
+            if (produto != null)
+            {
+                _context.Produto.Remove(produto);
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Index));
         }
-
         private bool ProdutoExists(int id)
         {
             return _context.Produto.Any(e => e.Id == id);

@@ -136,13 +136,34 @@ namespace WebCRUDMVCSQL.Controllers
         }
 
         // POST: clientes/Delete/5
+        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // VERIFICA SE EXISTEM PEDIDOS
+            bool possuiPedidos = await _context.pedido
+                .AnyAsync(p => p.ClienteId == id);
+
+            if (possuiPedidos)
+            {
+                TempData["Erro"] =
+                    "Não é possível excluir este cliente, pois ele possui pedidos cadastrados.";
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            // EXCLUI CLIENTE
             var cliente = await _context.Clientes.FindAsync(id);
-            _context.Clientes.Remove(cliente);
-            await _context.SaveChangesAsync();
+
+            if (cliente != null)
+            {
+                _context.Clientes.Remove(cliente);
+                await _context.SaveChangesAsync();
+            }
+
+            TempData["Sucesso"] = "Cliente excluído com sucesso.";
+
             return RedirectToAction(nameof(Index));
         }
 
