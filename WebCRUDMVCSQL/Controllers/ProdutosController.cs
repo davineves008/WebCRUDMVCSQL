@@ -54,19 +54,10 @@ namespace WebCRUDMVCSQL.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Peso,Preco")] Produto produto)
+        public async Task<IActionResult> Create(Produto produto)
         {
-            if (string.IsNullOrWhiteSpace(produto.Nome))
-                ModelState.AddModelError("Nome", "Informe o nome do produto");
-
-            if (produto.Peso <= 0)
-                ModelState.AddModelError("Peso", "O peso deve ser maior que zero");
-
-            if (produto.Preco <= 0)
-                ModelState.AddModelError("Preco", "O preço deve ser maior que zero");
-
-            if (!ModelState.IsValid)
-                return View(produto);
+            TempData["Teste"] =
+                $"Peso={produto.Peso} | Preço={produto.Preco}";
 
             _context.Add(produto);
             await _context.SaveChangesAsync();
@@ -160,7 +151,7 @@ namespace WebCRUDMVCSQL.Controllers
             if (possuiPedidos)
             {
                 TempData["Erro"] =
-                    "Não é possível excluir este produto, pois ele está vinculado a pedidos.";
+                    "Não é possível excluir este produto, pois ele está vinculado a um cliente ou  pedidos.";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -172,6 +163,9 @@ namespace WebCRUDMVCSQL.Controllers
                 _context.Produto.Remove(produto);
                 await _context.SaveChangesAsync();
             }
+
+            TempData["Sucesso"] =
+                "Produto excluído com sucesso.";
 
             return RedirectToAction(nameof(Index));
         }

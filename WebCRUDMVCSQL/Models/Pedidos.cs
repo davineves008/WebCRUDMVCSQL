@@ -31,11 +31,14 @@ namespace WebCRUDMVCSQL.Models
         [ForeignKey("ProdutoId")]
         public Produto Produto { get; set; }
 
-
+        [Range(1, 1000,
+       ErrorMessage = "A quantidade deve ser entre 1 e 1000")]
         [Display(Name = "Quantidade")]
         public int Quantidade { get; set; }
 
         // Valor Total Compra
+        [Range(0.01, 999999,
+       ErrorMessage = "O valor total deve ser maior que zero")]
         [Column(TypeName = "decimal(10,2)")]
         [Display(Name = "Valor Total")]
         public decimal ValorTotal { get; set; }

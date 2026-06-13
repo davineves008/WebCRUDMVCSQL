@@ -62,7 +62,7 @@ VALUES
                 conn.Open();
 
                 string query =
-                    @"SELECT * FROM usuarios
+                    @"SELECT * FROM Usuarios
                       WHERE Email = @Email
                       AND Senha = @Senha";
 

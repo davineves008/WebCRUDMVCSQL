@@ -148,7 +148,7 @@ namespace WebCRUDMVCSQL.Controllers
             if (possuiPedidos)
             {
                 TempData["Erro"] =
-                    "Não é possível excluir este cliente, pois ele possui pedidos cadastrados.";
+                    "Não é possível excluir este cliente, pois ele possui  produtos ou pedidos cadastrados.";
 
                 return RedirectToAction(nameof(Index));
             }

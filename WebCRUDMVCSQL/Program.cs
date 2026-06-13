@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using WebCRUDMVCSQL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,12 +28,23 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+var culture = new CultureInfo("pt-BR");
+
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(culture),
+    SupportedCultures = new[] { culture },
+    SupportedUICultures = new[] { culture }
+};
+
+app.UseRequestLocalization(localizationOptions);
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // ? IMPORTANTE
+app.UseSession();
 
 app.UseAuthorization();
 

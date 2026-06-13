@@ -17,13 +17,14 @@ namespace WebCRUDMVCSQL.Models
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
-        [Range(0.01, double.MaxValue,
+        [Range(0.01, 999999,
             ErrorMessage = "O peso deve ser maior que zero")]
         [Column("Peso", TypeName = "Decimal(10,2)")]
         [Display(Name = "Peso")]
+        [DisplayFormat(DataFormatString ="{0:n2}", ApplyFormatInEditMode = true)]
         public decimal Peso { get; set; }
 
-        [Range(0.01, double.MaxValue,
+        [Range(0.01, 999999,
             ErrorMessage = "O preço deve ser maior que zero")]
         [Column("Preço", TypeName = "Decimal(10,2)")]
         [Display(Name = "Preço")]

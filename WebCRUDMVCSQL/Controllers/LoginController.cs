@@ -10,6 +10,8 @@ namespace WebCRUDMVCSQL.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            HttpContext.Session.Clear();
+
             return View();
         }
 
